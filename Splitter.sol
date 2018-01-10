@@ -1,6 +1,5 @@
 pragma solidity ^0.4.6;
 
-
 /*There are 3 people
 	Three addresses
 We can see the balance of the Splitter contract
@@ -18,10 +17,15 @@ contract Splitter {
 	address public Bob;
 	address public Carol;
 	uint public splitterBalance;
-
-	address[] public people = [Alice, Bob, Carol];
+    
+    function Splitter(address Bob1, address Carol1) public{
+        Bob = Bob1;
+        Carol = Carol1;
+    }
+    
+    address[] public people = [Alice, Bob, Carol];
 	uint[] public balances = [Alice.balance, Bob.balance, Carol.balance];
-
+    
     function sendEth() public payable returns(bool success) {
         assert(msg.value!=0);
         if(msg.sender == Alice) {
@@ -40,7 +44,7 @@ contract Splitter {
 	function peopleBalance() public constant returns(uint[] bals) {
 	    return balances;
 	}
-
+	
 	function contractBalance() public constant returns(uint bal) {
 		return splitterBalance;
 	}
